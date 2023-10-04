@@ -1,20 +1,10 @@
 def has_same_digits(sequence):
-    digits = set()
-    for number in sequence:
-        number = int(number)
-        if number == 0:
-            if 0 in digits:
-                return True
-            digits.add(0)
-        else:
-            while number > 0:
-                digit = number % 10
-                if digit in digits:
-                    return True
-                digits.add(digit)
-                number //= 10
+    sequence = sequence.replace(" ", "")
+    for i in range(len(sequence)):
+        if sequence.count(sequence[i]) > 1:
+            return True
     return False
 
 
-s = input().split()
+s = input()
 print(has_same_digits(s))

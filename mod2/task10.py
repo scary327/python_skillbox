@@ -1,7 +1,9 @@
-s = input().split()
+s = input()
 result = ''
 
 for i in range(len(s)):
-    result += s[i][-1]
+    if s[i] == ' ':
+        result += s[i-1]
 
+result += s[-1]
 print(result)

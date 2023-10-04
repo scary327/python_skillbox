@@ -1,4 +1,6 @@
 a, b, c = input().split()
-result = [int(a), int(b), int(c)]
-result.sort()
-print(result[1])
+a = int(a)
+b = int(b)
+c = int(c)
+print(a + b + c - min(a, b, c) - max(a, b, c))
+print(max(a, min(b, c)))
