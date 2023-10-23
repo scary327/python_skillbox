@@ -2,29 +2,36 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
+        self.prev = None
 
 
 class Stack:
     def __init__(self):
-        self.head = None
-
-    def push(self, data):
-        new_node = Node(data)
-        new_node.next = self.head
-        self.head = new_node
+        self.end = None
 
     def pop(self):
-        if self.head is None:
+        if self.end is None:
             return None
-        popped_node = self.head
-        self.head = self.head.next
-        popped_node.next = None
-        return popped_node.data
+        else:
+            val = self.end.data
+            if self.end.prev is not None:
+                self.end.prev.next = None
+                self.end = self.end.prev
+            else:
+                self.end = None
+            return val
 
-    def peek(self):
-        if self.head is None:
-            return None
-        return self.head.data
+    def push(self, val):
+        new_node = Node(val)
+        if self.end is None:
+            self.end = new_node
+        else:
+            new_node.prev = self.end
+            self.end.next = new_node
+            self.end = new_node
 
-    def is_empty(self):
-        return self.head is None
+    def print(self):
+        current = self.end
+        while current is not None:
+            print(current.data, end=' ')
+            current = current.prev
